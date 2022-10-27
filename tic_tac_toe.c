@@ -10,11 +10,11 @@ int i,j,flag=0,win=0,temp=0;
 char matrix[3][3],dummy;
 int main(void){
 	printf("Hello ! This is a simple tic-tak-toe.\n");
-	printf("This game is played by 2 players one by one.\nEnter the respective place where you want to place your piece.\nEnter row number,then by pressing tab,Enter column number :-\n	ex->1	1\n");
+	printf("This game is played by 2 players one by one.\nEnter the respective place where you want to place your move.\nEnter row positon,then by pressing tab,Enter column position :-\n	ex->1	1\n");
 	reset();
 	do{
-		show();
-		printf("Player A enter your turn : ");
+		show();							//input
+		printf("Player A enter your turn :- ");
 		scanf("%d	%d",&i,&j);
 		printf("\n");
 		matrix[i][j] ='X';
@@ -26,7 +26,7 @@ int main(void){
 		if(win==1 || temp>7)
 			break;
 		show();
-		printf("Player B enter your turn : ");
+		printf("Player B enter your turn :- ");
 		scanf("%d	%d",&i,&j);
 		printf("\n");
 		matrix[i][j]='O';
@@ -40,7 +40,7 @@ int main(void){
 	}while(flag!=1);
 	return 0;
 }
-void show(void){
+void show(void){							//print
 	printf("		0	1	2\n\n");
 	for(i=0;i<=2;i++){
 		printf("	%d",i);
@@ -51,7 +51,7 @@ void show(void){
 	}
 	printf("\n");
 }
-void reset(void){
+void reset(void){							//in case of restart reset matrix
 	for(i=0;i<=2;i++){
 		for(j=0;j<=2;j++){
 			matrix[i][j]= '\0';
@@ -68,7 +68,7 @@ void replay(void){
 		win=0;
 	}
 }
-void check(void){
+void check(void){								//check if someone wins
 	if(win==1){
 		if(temp%2!=0)
 			printf("\nPlayer A wins !!\n\n");
@@ -83,13 +83,13 @@ void check(void){
 		replay();
 	}
 }
-void diag(void){
+void diag(void){							//if win is diagonal
 	if( matrix[1][1]!='\0' && (((matrix[0][0]==matrix[1][1]) && (matrix[0][0]==matrix[2][2])) || ((matrix[0][2]==matrix[1][1]) && (matrix[2][0]==matrix[1][1])))){
 		win=1;
 		printf("\nDiagonal win.\n");
 	}
 }
-void hori(void){
+void hori(void){							//if win is horizontal
 	for(i=0;i<=2;i++){
 		if(matrix[i][0]!='\0' && (matrix[i][0]==matrix[i][1]) && (matrix[i][0]==matrix[i][2])){
 			win=1;
@@ -97,7 +97,7 @@ void hori(void){
 		}
 	}
 }
-void vert(void){
+void vert(void){							//if win is vertical
 	for(i=0;i<=2;i++){
 		if(matrix[0][i]!='\0' && (matrix[0][i]==matrix[1][i] && matrix[0][i]==matrix[2][i]) ){
 			win=1;
